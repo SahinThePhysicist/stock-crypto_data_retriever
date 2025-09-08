@@ -30,35 +30,36 @@ def save_to_excel(ticker, data):
         else:
             pd.DataFrame({"Message": ["Less than 5 years of data available."]}).to_excel(writer, sheet_name="Last 5 Years")
 
-    print(f"📁 Saved: {filename}")
+    print(f"File Saved: {filename}")
 
 
 def main():
-    print("📈 Yahoo Finance Ticker Downloader to Excel")
+    print("Yahoo Finance Ticker Downloader to Excel")
 
     while True:
         try:
             count = int(input("How many stocks/cryptos do you want to check? "))
             if count <= 0:
-                print("❌ Enter a number greater than 0.")
+                print("Enter a number greater than 0.")
                 continue
             break
         except ValueError:
-            print("❌ Invalid input. Please enter an integer.")
+            print("Invalid input. Please enter an integer.")
 
     for i in range(count):
         while True:
             ticker = input(f"Enter ticker #{i+1} (e.g., AAPL or BTC-USD): ").upper().strip()
             if is_valid_ticker(ticker):
-                print(f"✅ Valid ticker: {ticker}. Downloading data...\n")
+                print(f"Valid ticker: {ticker}. Downloading data...\n")
                 data = get_data(ticker)
                 save_to_excel(ticker, data)
                 break
             else:
-                print(f"❌ Invalid ticker: {ticker}. Please try again.\n")
+                print(f"Invalid ticker: {ticker}. Please try again.\n")
 
-    print("✅ All files processed.")
+    print("All files processed.")
 
 if __name__ == "__main__":
     main()
+
 
