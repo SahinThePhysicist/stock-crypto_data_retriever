@@ -11,7 +11,7 @@ def is_valid_ticker(ticker):
 
 def get_data(ticker):
     df = yf.Ticker(ticker).history(period="max")
-    df.index = df.index.tz_localize(None)  # Remove timezone from DatetimeIndex
+    df.index = df.index.tz_localize(None)
     return df
 
 def save_to_excel(ticker, data):
@@ -61,3 +61,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
